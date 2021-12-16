@@ -9,15 +9,15 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const App = ({posts, dialogs, messages}) => {
+const App = ({appState}) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar state={appState.sideBar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' children={<Dialogs dialogs={dialogs} messages={messages}/>} />
-                    <Route path='/profile' children={<Profile posts={posts}/>} />
+                    <Route path='/dialogs' children={<Dialogs state={appState.dialogsPage} />} />
+                    <Route path='/profile' children={<Profile state={appState.profilePage}/>} />
                     <Route path='/news' children={<News/>}/>
                     <Route path='/music' children={<Music/>}/>
                     <Route path='/settings' children={<Settings/>}/>

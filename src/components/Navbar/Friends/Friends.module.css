@@ -1,0 +1,23 @@
+.wrapper {
+    color: white;
+}
+
+.title, .item {
+    margin: 10px;
+}
+
+.title {
+    margin-top: 5rem;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avatarImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
