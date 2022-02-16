@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Friends.module.css'
+import s from './Friends.module.scss'
 import Friend from "./Friend";
 
 const Friends = ({friends}) => {
