@@ -6,16 +6,14 @@ import Message from './Message/Message';
 const Dialogs = ({ state }) => {
   return (
     <div className={styles.dialogs}>
-      <div className={styles.dialogsItem}>
-        {state.dialogs.map(({ id, name }) => (
-          <DialogItem key={id} name={name} id={id} />
-        ))}
+      <div>
+        {state.dialogs.map(({id, name, imageUrl}) => <DialogItem key={id} name={name} id={id} imageUrl={imageUrl}/>)}
       </div>
 
       <div className={styles.messages}>
-        {state.messages.map(({ message, id }) => (
-          <Message key={id} message={message} />
-        ))}
+        <div>
+          {state.messages.map(({message, id}) => <Message key={id} message={message} />)}
+        </div>
       </div>
     </div>
   );
