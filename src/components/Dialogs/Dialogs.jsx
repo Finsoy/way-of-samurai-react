@@ -7,12 +7,16 @@ const Dialogs = ({ state }) => {
   return (
     <div className={styles.dialogs}>
       <div>
-        {state.dialogs.map(({id, name, imageUrl}) => <DialogItem key={id} name={name} id={id} imageUrl={imageUrl}/>)}
+        {state.dialogs.map(({ id, name, imageUrl }) => (
+          <DialogItem key={id} name={name} id={id} imageUrl={imageUrl} />
+        ))}
       </div>
 
       <div className={styles.messages}>
         <div>
-          {state.messages.map(({message, id}) => <Message key={id} message={message} />)}
+          {state.messages.map(({ message, id }) => (
+            <Message key={id} message={message} />
+          ))}
         </div>
       </div>
     </div>
