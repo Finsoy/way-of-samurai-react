@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import './index.scss';
 
-import state from './redux/state';
+import state, { addPost } from './redux/state';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App appState={state} />
+    <BrowserRouter>
+      <App appState={state} addPost={addPost} />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
