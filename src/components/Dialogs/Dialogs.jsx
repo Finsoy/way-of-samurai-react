@@ -3,12 +3,14 @@ import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
-const Dialogs = ({ state }) => {
+const Dialogs = ({ state, addMessage }) => {
   const postInputRef = useRef(null);
 
   const handleMessageClick = (event) => {
     console.log('click');
     console.log(postInputRef.current.value);
+    addMessage(postInputRef.current.value);
+    postInputRef.current.value = '';
   };
 
   return (

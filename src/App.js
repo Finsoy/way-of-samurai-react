@@ -9,7 +9,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import './App.scss';
 
-const App = ({ appState, addPost }) => {
+const App = ({ appState, addPost, addMessage }) => {
   return (
     <div className="app-wrapper">
       <Header />
@@ -17,7 +17,7 @@ const App = ({ appState, addPost }) => {
       <div className="app-wrapper-content">
         <Route
           path="/dialogs"
-          children={<Dialogs state={appState.dialogsPage} />}
+          children={<Dialogs state={appState.dialogsPage} addMessage={addMessage} />}
         />
         <Route
           path="/profile"

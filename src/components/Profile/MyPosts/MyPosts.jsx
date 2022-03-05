@@ -9,6 +9,7 @@ const MyPosts = ({ posts, text, addPost }) => {
     console.log('click');
     console.log(postInputRef.current.value);
     addPost(postInputRef.current.value);
+    postInputRef.current.value = '';
   };
 
   return (
