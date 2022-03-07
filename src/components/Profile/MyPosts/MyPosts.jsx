@@ -12,8 +12,8 @@ const MyPosts = ({ posts, text, addPost, newPostText, updateNewPostText }) => {
   };
 
   const onPostChange = (event) => {
-    console.log(newPostText);
-    updateNewPostText(postInputRef.current.value);
+    console.log(event.target.value);
+    updateNewPostText(event.target.value);
   };
 
   return (

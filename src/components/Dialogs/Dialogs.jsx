@@ -3,7 +3,7 @@ import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
-const Dialogs = ({ state, addMessage }) => {
+const Dialogs = ({ state, addMessage, updateNewMessageText }) => {
   const postInputRef = useRef(null);
 
   const handleMessageClick = (event) => {
@@ -11,6 +11,11 @@ const Dialogs = ({ state, addMessage }) => {
     console.log(postInputRef.current.value);
     addMessage(postInputRef.current.value);
     postInputRef.current.value = '';
+  };
+
+  const handleMessageText = (event) => {
+    console.log(event.target.value);
+    updateNewMessageText(event.target.value);
   };
 
   return (
@@ -29,7 +34,13 @@ const Dialogs = ({ state, addMessage }) => {
         </div>
 
         <div className={styles.sendMessageWrapper}>
-          <textarea ref={postInputRef} cols="30" rows="5"></textarea>
+          <textarea
+            ref={postInputRef}
+            value={state.newMessageText}
+            onChange={handleMessageText}
+            cols="30"
+            rows="5"
+          ></textarea>
           <button onClick={handleMessageClick}>Send message</button>
         </div>
       </div>
