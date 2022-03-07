@@ -9,7 +9,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import './App.scss';
 
-const App = ({ appState, addPost, addMessage }) => {
+const App = ({ appState, addPost, addMessage, updateNewPostText }) => {
   return (
     <div className="app-wrapper">
       <Header />
@@ -21,7 +21,7 @@ const App = ({ appState, addPost, addMessage }) => {
         />
         <Route
           path="/profile"
-          children={<Profile state={appState.profilePage} addPost={addPost} />}
+          children={<Profile profilePage={appState.profilePage} addPost={addPost} updateNewPostText={updateNewPostText} />}
         />
         <Route path="/news" children={<News />} />
         <Route path="/music" children={<Music />} />

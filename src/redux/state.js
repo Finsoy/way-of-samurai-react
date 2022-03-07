@@ -67,6 +67,7 @@ const friends = [
 const state = {
   profilePage: {
     posts,
+    newPostText: '',
   },
   dialogsPage: {
     messages,
@@ -77,14 +78,15 @@ const state = {
   },
 };
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
   let newPost = {
     id: 5,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 0,
   };
   state.profilePage.posts.push(newPost);
-  renderEntireTree(state, addPost, addMessage);
+  updateNewPostText('');
+  renderEntireTree(state, addPost, addMessage, updateNewPostText);
 };
 
 export let addMessage = (message) => {
@@ -93,7 +95,12 @@ export let addMessage = (message) => {
     message: message,
   };
   state.dialogsPage.messages.push(newMessage);
-  renderEntireTree(state, addPost, addMessage);
+  renderEntireTree(state, addPost, addMessage, updateNewPostText);
+};
+
+export const updateNewPostText = (text) => {
+  state.profilePage.newPostText = text;
+  renderEntireTree(state, addPost, addMessage, updateNewPostText);
 };
 
 export default state;

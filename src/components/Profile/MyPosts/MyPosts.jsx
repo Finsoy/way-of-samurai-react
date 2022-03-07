@@ -2,14 +2,18 @@ import React, { useRef } from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ posts, text, addPost }) => {
+const MyPosts = ({ posts, text, addPost, newPostText, updateNewPostText }) => {
   const postInputRef = useRef(null);
 
   const handleAddPost = (event) => {
     console.log('click');
     console.log(postInputRef.current.value);
-    addPost(postInputRef.current.value);
-    postInputRef.current.value = '';
+    addPost();
+  };
+
+  const onPostChange = (event) => {
+    console.log(newPostText);
+    updateNewPostText(postInputRef.current.value);
   };
 
   return (
@@ -17,7 +21,13 @@ const MyPosts = ({ posts, text, addPost }) => {
       <h3>{text}</h3>
       <div>
         <div>
-          <textarea ref={postInputRef} name="" id="" cols="30" rows="10" />
+          <textarea
+            ref={postInputRef}
+            onChange={onPostChange}
+            value={newPostText}
+            cols="30"
+            rows="10"
+          />
         </div>
         <div>
           <button onClick={handleAddPost}>Add post</button>

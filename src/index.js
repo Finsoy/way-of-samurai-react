@@ -1,4 +1,4 @@
 import { renderEntireTree } from './render';
-import state, { addMessage, addPost } from './redux/state';
+import state, { addMessage, addPost, updateNewPostText } from './redux/state';
 
-renderEntireTree(state, addPost, addMessage);
+renderEntireTree(state, addPost, addMessage, updateNewPostText);
