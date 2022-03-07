@@ -1,7 +1,3 @@
-let renderEntireTree = () => {
-  console.log('state is changed');
-};
-
 const posts = [
   { id: 1, message: 'Hi', likesCount: 0 },
   { id: 2, message: 'How are you', likesCount: 56 },
@@ -66,54 +62,57 @@ const friends = [
   },
 ];
 
-const state = {
-  profilePage: {
-    posts,
-    newPostText: '',
+let store = {
+  _state: {
+    profilePage: {
+      posts,
+      newPostText: '',
+    },
+    dialogsPage: {
+      messages,
+      dialogs,
+      newMessageText: '',
+    },
+    sideBar: {
+      friends,
+    },
   },
-  dialogsPage: {
-    messages,
-    dialogs,
-    newMessageText: '',
+  getState() {
+    return this._state;
   },
-  sideBar: {
-    friends,
+  _callSubscriber() {
+    console.log('state is changed');
+  },
+  addPost() {
+    let newPost = {
+      id: 5,
+      message: this._state.profilePage.newPostText,
+      likesCount: 0,
+    };
+    this._state.profilePage.posts.push(newPost);
+    this.updateNewPostText('');
+    this._callSubscriber(this);
+  },
+  addMessage(message) {
+    let newMessage = {
+      id: 6,
+      message: message,
+    };
+    this._state.dialogsPage.messages.push(newMessage);
+    this.updateNewMessageText('');
+    this._callSubscriber(this);
+  },
+  updateNewPostText(text) {
+    this._state.profilePage.newPostText = text;
+    this._callSubscriber(this);
+  },
+  updateNewMessageText(text) {
+    this._state.dialogsPage.newMessageText = text;
+    this._callSubscriber(this);
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 };
 
-export let addPost = () => {
-  let newPost = {
-    id: 5,
-    message: state.profilePage.newPostText,
-    likesCount: 0,
-  };
-  state.profilePage.posts.push(newPost);
-  updateNewPostText('');
-  renderEntireTree(state);
-};
-
-export let addMessage = (message) => {
-  let newMessage = {
-    id: 6,
-    message: message,
-  };
-  state.dialogsPage.messages.push(newMessage);
-  updateNewMessageText('');
-  renderEntireTree(state);
-};
-
-export const updateNewPostText = (text) => {
-  state.profilePage.newPostText = text;
-  renderEntireTree(state);
-};
-
-export const updateNewMessageText = (text) => {
-  state.dialogsPage.newMessageText = text;
-  renderEntireTree(state);
-};
-
-export const subscribe = (observer) => {
-  renderEntireTree = observer;
-};
-
-export default state;
+export default store;
