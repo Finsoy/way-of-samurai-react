@@ -1,6 +1,6 @@
-import React from 'react';
-import s from './../Dialogs.module.scss';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import s from "./../Dialogs.module.scss";
+import { NavLink } from "react-router-dom";
 
 const DialogItem = ({ id, name, imageUrl }) => {
   let path = `/dialogs/${id}`;
@@ -8,7 +8,12 @@ const DialogItem = ({ id, name, imageUrl }) => {
   return (
     <div className={s.dialogsItem}>
       <img className={s.dialogAvatar} src={imageUrl} alt={`${name}-avatar`} />
-      <NavLink className={s.dialog} activeClassName={s.active} to={path}>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? `${s.active} ${s.dialog}` : s.dialog
+        }
+        to={path}
+      >
         {name}
       </NavLink>
     </div>

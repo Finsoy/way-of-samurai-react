@@ -1,20 +1,20 @@
-import React, { useRef } from 'react';
-import styles from './Dialogs.module.scss';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import { actionTypes } from '../../types';
+import React, { useRef } from "react";
+import styles from "./Dialogs.module.scss";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
+import { actionTypes } from "../../types";
 
 const Dialogs = ({ state, dispatch }) => {
   const postInputRef = useRef(null);
 
   const handleMessageClick = (event) => {
-    console.log('click');
+    console.log("click");
     console.log(postInputRef.current.value);
     dispatch({
       type: actionTypes.ADD_MESSAGE,
       message: postInputRef.current.value,
     });
-    postInputRef.current.value = '';
+    postInputRef.current.value = "";
   };
 
   const handleMessageText = (event) => {
@@ -47,7 +47,7 @@ const Dialogs = ({ state, dispatch }) => {
             onChange={handleMessageText}
             cols="30"
             rows="5"
-          ></textarea>
+          />
           <button onClick={handleMessageClick}>Send message</button>
         </div>
       </div>
