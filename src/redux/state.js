@@ -1,6 +1,8 @@
+import {actionTypes} from '../types';
+
 const posts = [
-  { id: 1, message: 'Hi', likesCount: 0 },
-  { id: 2, message: 'How are you', likesCount: 56 },
+  {id: 1, message: 'Hi', likesCount: 0},
+  {id: 2, message: 'How are you', likesCount: 56},
 ];
 
 const dialogs = [
@@ -37,11 +39,11 @@ const dialogs = [
 ];
 
 const messages = [
-  { id: 1, message: 'Hi' },
-  { id: 2, message: 'How are you' },
-  { id: 3, message: 'My friend' },
-  { id: 4, message: 'BEEEP!' },
-  { id: 5, message: 'dance!' },
+  {id: 1, message: 'Hi'},
+  {id: 2, message: 'How are you'},
+  {id: 3, message: 'My friend'},
+  {id: 4, message: 'BEEEP!'},
+  {id: 5, message: 'dance!'},
 ];
 
 const friends = [
@@ -76,43 +78,59 @@ let store = {
     sideBar: {
       friends,
     },
+    _callSubscriber() {
+      console.log('state is changed');
+    },
   },
   getState() {
     return this._state;
   },
-  _callSubscriber() {
-    console.log('state is changed');
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
-  addPost() {
+  _addPost() {
     let newPost = {
       id: 5,
       message: this._state.profilePage.newPostText,
       likesCount: 0,
     };
     this._state.profilePage.posts.push(newPost);
-    this.updateNewPostText('');
+    this._updateNewPostText('');
     this._callSubscriber(this);
   },
-  addMessage(message) {
+  _addMessage(message) {
     let newMessage = {
       id: 6,
       message: message,
     };
     this._state.dialogsPage.messages.push(newMessage);
-    this.updateNewMessageText('');
+    this._updateNewMessageText('');
     this._callSubscriber(this);
   },
-  updateNewPostText(text) {
+  _updateNewPostText(text) {
     this._state.profilePage.newPostText = text;
     this._callSubscriber(this);
   },
-  updateNewMessageText(text) {
+  _updateNewMessageText(text) {
     this._state.dialogsPage.newMessageText = text;
     this._callSubscriber(this);
   },
-  subscribe(observer) {
-    this._callSubscriber = observer;
+  dispatch(action) {
+    if (action.type === actionTypes.ADD_POST) {
+      this._addPost();
+    } else if (action.type === actionTypes.UPDATE_NEW_POST_TEXT) {
+      this._updateNewPostText(action.text);
+    } else if (action.type === actionTypes.ADD_MESSAGE) {
+      this._addMessage(action.message);
+    } else if (action.type === actionTypes.UPDATE_NEW_MESSAGE_TEXT) {
+      this._updateNewMessageText(action.text);
+    }
   },
 };
+
+export const addPostActionCreator = () => ({type: actionTypes.ADD_POST})
+
+export const updateNewPostTextActionCreator = (text) => ({type: actionTypes.UPDATE_NEW_POST_TEXT, text})
+
 
 export default store;

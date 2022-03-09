@@ -2,20 +2,27 @@ import React, { useRef } from 'react';
 import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { actionTypes } from '../../types';
 
-const Dialogs = ({ state, addMessage, updateNewMessageText }) => {
+const Dialogs = ({ state, dispatch }) => {
   const postInputRef = useRef(null);
 
   const handleMessageClick = (event) => {
     console.log('click');
     console.log(postInputRef.current.value);
-    addMessage(postInputRef.current.value);
+    dispatch({
+      type: actionTypes.ADD_MESSAGE,
+      message: postInputRef.current.value,
+    });
     postInputRef.current.value = '';
   };
 
   const handleMessageText = (event) => {
     console.log(event.target.value);
-    updateNewMessageText(event.target.value);
+    dispatch({
+      type: actionTypes.UPDATE_NEW_MESSAGE_TEXT,
+      message: event.target.value,
+    });
   };
 
   return (

@@ -1,19 +1,21 @@
 import React, { useRef } from 'react';
+import { actionTypes } from '../../../types';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
-const MyPosts = ({ posts, text, addPost, newPostText, updateNewPostText }) => {
+const MyPosts = ({ posts, text, newPostText, dispatch }) => {
   const postInputRef = useRef(null);
 
   const handleAddPost = (event) => {
     console.log('click');
     console.log(postInputRef.current.value);
-    addPost();
+    dispatch(addPostActionCreator());
   };
 
   const onPostChange = (event) => {
     console.log(event.target.value);
-    updateNewPostText(event.target.value);
+    dispatch(updateNewPostTextActionCreator(event.target.value));
   };
 
   return (
