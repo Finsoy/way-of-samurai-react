@@ -2,27 +2,24 @@ import React, { useRef } from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { actionTypes } from "../../types";
+import {
+  addMessageActionCreator,
+  updateNewMessageTextActionCreator,
+} from "../../redux/state";
 
 const Dialogs = ({ state, dispatch }) => {
   const postInputRef = useRef(null);
 
-  const handleMessageClick = (event) => {
+  const onMessageSend = (event) => {
     console.log("click");
     console.log(postInputRef.current.value);
-    dispatch({
-      type: actionTypes.ADD_MESSAGE,
-      message: postInputRef.current.value,
-    });
+    dispatch(addMessageActionCreator(postInputRef.current.value));
     postInputRef.current.value = "";
   };
 
-  const handleMessageText = (event) => {
+  const onMessageUpdate = (event) => {
     console.log(event.target.value);
-    dispatch({
-      type: actionTypes.UPDATE_NEW_MESSAGE_TEXT,
-      message: event.target.value,
-    });
+    dispatch(updateNewMessageTextActionCreator(event.target.value));
   };
 
   return (
@@ -44,11 +41,11 @@ const Dialogs = ({ state, dispatch }) => {
           <textarea
             ref={postInputRef}
             value={state.newMessageText}
-            onChange={handleMessageText}
+            onChange={onMessageUpdate}
             cols="30"
             rows="5"
           />
-          <button onClick={handleMessageClick}>Send message</button>
+          <button onClick={onMessageSend}>Send message</button>
         </div>
       </div>
     </div>

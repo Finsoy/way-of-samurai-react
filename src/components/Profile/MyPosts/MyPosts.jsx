@@ -1,14 +1,16 @@
-import React, { useRef } from 'react';
-import { actionTypes } from '../../../types';
-import classes from './MyPosts.module.css';
-import Post from './Post/Post';
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import React, { useRef } from "react";
+import classes from "./MyPosts.module.css";
+import Post from "./Post/Post";
+import {
+  addPostActionCreator,
+  updateNewPostTextActionCreator,
+} from "../../../redux/state";
 
 const MyPosts = ({ posts, text, newPostText, dispatch }) => {
   const postInputRef = useRef(null);
 
   const handleAddPost = (event) => {
-    console.log('click');
+    console.log("click");
     console.log(postInputRef.current.value);
     dispatch(addPostActionCreator());
   };
@@ -28,7 +30,7 @@ const MyPosts = ({ posts, text, newPostText, dispatch }) => {
             onChange={onPostChange}
             value={newPostText}
             cols="30"
-            rows="10"
+            rows="5"
           />
         </div>
         <div>
