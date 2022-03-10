@@ -1,28 +1,24 @@
 import React, { useRef } from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {
-  addPostActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profile-reducer";
 
-const MyPosts = ({ posts, text, newPostText, dispatch }) => {
+const MyPosts = ({ updateNewPostText, addPost, posts, newPostText }) => {
   const postInputRef = useRef(null);
 
-  const handleAddPost = (event) => {
+  const onAddPost = () => {
     console.log("click");
     console.log(postInputRef.current.value);
-    dispatch(addPostActionCreator());
+    addPost();
   };
 
   const onPostChange = (event) => {
     console.log(event.target.value);
-    dispatch(updateNewPostTextActionCreator(event.target.value));
+    updateNewPostText(event.target.value);
   };
 
   return (
     <div className={classes.postsBlock}>
-      <h3>{text}</h3>
+      <h3>My posts</h3>
       <div>
         <div>
           <textarea
@@ -34,7 +30,7 @@ const MyPosts = ({ posts, text, newPostText, dispatch }) => {
           />
         </div>
         <div>
-          <button onClick={handleAddPost}>Add post</button>
+          <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
       <div className={classes.posts}>

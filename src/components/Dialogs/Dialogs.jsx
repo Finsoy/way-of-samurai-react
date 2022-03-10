@@ -2,45 +2,36 @@ import React, { useRef } from "react";
 import styles from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {
-  addMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from "../../redux/dialogs-reducer";
 
-const Dialogs = ({ state, dispatch }) => {
-  const postInputRef = useRef(null);
-
-  const onMessageSend = (event) => {
-    console.log("click");
-    console.log(postInputRef.current.value);
-    dispatch(addMessageActionCreator(postInputRef.current.value));
-    postInputRef.current.value = "";
+const Dialogs = ({ updateNewMessageText, sendMessage, dialogsPage }) => {
+  const textareaRef = useRef();
+  const onMessageSend = () => {
+    sendMessage(textareaRef.current.value);
   };
 
   const onMessageUpdate = (event) => {
-    console.log(event.target.value);
-    dispatch(updateNewMessageTextActionCreator(event.target.value));
+    updateNewMessageText(event.target.value);
   };
 
   return (
     <div className={styles.dialogs}>
       <div>
-        {state.dialogs.map(({ id, name, imageUrl }) => (
+        {dialogsPage.dialogs.map(({ id, name, imageUrl }) => (
           <DialogItem key={id} name={name} id={id} imageUrl={imageUrl} />
         ))}
       </div>
 
       <div className={styles.messages}>
         <div>
-          {state.messages.map(({ message, id }) => (
+          {dialogsPage.messages.map(({ message, id }) => (
             <Message key={id} message={message} />
           ))}
         </div>
 
         <div className={styles.sendMessageWrapper}>
           <textarea
-            ref={postInputRef}
-            value={state.newMessageText}
+            ref={textareaRef}
+            value={dialogsPage.newMessageText}
             onChange={onMessageUpdate}
             cols="30"
             rows="5"
