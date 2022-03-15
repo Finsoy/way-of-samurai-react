@@ -1,28 +1,27 @@
 import React, { useRef } from "react";
-import styles from "./Dialogs.module.scss";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
 import {
   addMessageActionCreator,
   updateNewMessageTextActionCreator,
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import { useDispatch, useSelector } from "react-redux";
 
-const DialogsContainer = ({ store }) => {
-  const state = store.getState().dialogsPage;
+const DialogsContainer = () => {
+  const store = useSelector((state) => state.dialogsPage);
+  const dispatch = useDispatch();
   const onMessageSend = (message) => {
-    store.dispatch(addMessageActionCreator(message));
+    dispatch(addMessageActionCreator(message));
   };
 
   const onMessageUpdate = (text) => {
-    store.dispatch(updateNewMessageTextActionCreator(text));
+    dispatch(updateNewMessageTextActionCreator(text));
   };
 
   return (
     <Dialogs
       updateNewMessageText={onMessageUpdate}
       sendMessage={onMessageSend}
-      dialogsPage={state}
+      dialogsPage={store}
     />
   );
 };

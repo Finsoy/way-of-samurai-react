@@ -17,11 +17,11 @@ const App = ({ appState, dispatch, store }) => {
       <Navbar state={appState.sideBar} />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/dialogs" element={<DialogsContainer store={store} />}>
-            <Route path=":id" element={<DialogsContainer store={store} />} />
+          <Route path="/dialogs" element={<DialogsContainer />}>
+            <Route path=":id" element={<DialogsContainer />} />
           </Route>
 
-          <Route path="/profile" element={<Profile store={store} />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />

@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   addPostActionCreator,
   updateNewPostTextActionCreator,
 } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import { useDispatch, useSelector } from "react-redux";
 
-const MyPostsContainer = ({ store }) => {
-  const state = store.getState();
+const MyPostsContainer = () => {
+  const { posts, newPostText } = useSelector((state) => state.profilePage);
+  const dispatch = useDispatch();
 
   const handleAddPost = () => {
     console.log("click");
-    store.dispatch(addPostActionCreator());
+    dispatch(addPostActionCreator());
   };
 
   const onPostChange = (text) => {
-    store.dispatch(updateNewPostTextActionCreator(text));
+    dispatch(updateNewPostTextActionCreator(text));
   };
 
   return (
     <MyPosts
       updateNewPostText={onPostChange}
       addPost={handleAddPost}
-      posts={state.profilePage.posts}
-      newPostText={state.profilePage.newPostText}
+      posts={posts}
+      newPostText={newPostText}
     />
   );
 };
