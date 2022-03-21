@@ -9,8 +9,9 @@ import Settings from "./components/Settings/Settings";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.scss";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
-const App = ({ appState, dispatch, store }) => {
+const App = ({ appState }) => {
   return (
     <div className="app-wrapper">
       <Header />
@@ -25,6 +26,7 @@ const App = ({ appState, dispatch, store }) => {
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/users" element={<UsersContainer />} />
           <Route path="*" element={<Navigate to="/profile" />} />
         </Routes>
       </div>

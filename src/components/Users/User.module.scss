@@ -1,0 +1,55 @@
+.userWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  padding: 1rem;
+}
+
+.userAvatar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  img, .defaultAvatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .defaultAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    background-color: #c2c2c2;
+  }
+  .defaultAvatar::after {
+    position: absolute;
+    content: "?";
+    background-color: transparent;
+    font-size: 45px;
+  }
+.follow{
+  margin-top: 1rem;
+}
+}
+
+.userInfo{
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid white;
+  border-radius: .5rem;
+  padding: 1rem;
+  .name{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .status{
+    margin-top: 1rem;
+  }
+.location{}
+}
