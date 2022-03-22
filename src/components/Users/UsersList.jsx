@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./User.module.scss";
 import User from "./User";
 
 const UsersList = ({ users, follow, unFollow }) => {

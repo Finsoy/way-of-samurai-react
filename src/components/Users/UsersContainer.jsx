@@ -19,7 +19,6 @@ const UsersContainer = () => {
     dispatch(setUsersAC(users));
   };
 
-  console.log(users);
   return (
     <>
       <UsersList
