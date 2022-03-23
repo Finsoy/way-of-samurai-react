@@ -5,8 +5,8 @@ const User = ({ user, follow, unFollow }) => {
   return (
     <div className={style.userWrapper}>
       <div className={style.userAvatar}>
-        {user.avatarUrl ? (
-          <img src={user.avatarUrl} alt="avatar" />
+        {user.photos.small ? (
+          <img src={user.photos.small} alt="avatar" />
         ) : (
           <div className={style.defaultAvatar} />
         )}
@@ -20,13 +20,13 @@ const User = ({ user, follow, unFollow }) => {
 
       <div className={style.userInfo}>
         <div className={style.name}>
-          <h2>{user.fullName}</h2>
+          <h2>{user.name}</h2>
           <p className={style.status}>{user.status}</p>
         </div>
         <div className={style.location}>
-          {user.location.country},
+          {"user.location.country"},
           <br />
-          {user.location.city}
+          {"user.location.city"}
         </div>
       </div>
     </div>
