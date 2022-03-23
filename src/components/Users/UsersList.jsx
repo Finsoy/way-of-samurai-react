@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import User from "./User";
 import axios from "axios";
 
 const UsersList = ({ users, follow, unFollow, setUsers }) => {
-  console.log(users);
-  if (!users.length) {
-    axios
-      .get(
-        "https://social-network.samuraijs.com/api/1.0/users?count=10&page=69"
-      )
-      .then((data) => setUsers(data.data.items));
-  }
+  useEffect(() => {
+    console.log(users);
+    if (!users.length) {
+      axios
+        .get(
+          "https://social-network.samuraijs.com/api/1.0/users?count=10&page=69"
+        )
+        .then((data) => setUsers(data.data.items))
+        .then((data) => console.log(data));
+    }
+  }, []);
 
   return (
     <>
