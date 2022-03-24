@@ -2,6 +2,11 @@ import React from "react";
 import style from "./Pagination.module.scss";
 
 const Pagination = ({ pages, setCurrentPage, currentPage }) => {
+  const indexOfCurrentPage = pages.indexOf(currentPage) + 1;
+  const visiblePages =
+    indexOfCurrentPage >= 3
+      ? pages.slice(indexOfCurrentPage - 3, indexOfCurrentPage + 2)
+      : pages.slice(0, indexOfCurrentPage + 3);
   console.log(currentPage);
   const setNextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -18,7 +23,7 @@ const Pagination = ({ pages, setCurrentPage, currentPage }) => {
           {"<"}
         </button>
       )}
-      {pages.slice(0, 5).map((page) => (
+      {visiblePages.map((page) => (
         <span
           key={page}
           onClick={() => setCurrentPage(page)}
