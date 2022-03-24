@@ -1,9 +1,13 @@
+.userListWrapper {
+  color: white;
+  padding: 1rem;
+}
+
 .userWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  padding: 1rem;
 }
 
 .userAvatar {
@@ -53,3 +57,4 @@
   }
 .location{}
 }
+
