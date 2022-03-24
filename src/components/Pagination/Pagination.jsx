@@ -7,7 +7,7 @@ const Pagination = ({ pages, setCurrentPage, currentPage }) => {
     indexOfCurrentPage >= 3
       ? pages.slice(indexOfCurrentPage - 3, indexOfCurrentPage + 2)
       : pages.slice(0, indexOfCurrentPage + 3);
-  console.log(currentPage);
+
   const setNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
